@@ -1,0 +1,145 @@
+- Question:
+    label: Name
+    type: text_field
+    name: applicant_name
+    required: true
+    error_message: This field cannot be left blank.
+- Question: 
+    label: Email
+    type: email_field
+    name: applicant_email
+    required: true
+    error_message: This field cannot be left blank.
+- Format:
+    label: These questions are about the Posting on Indeed
+    type: text
+    class: underline bold
+- Question:
+    label: What was the Pay Range in the Posting for this Job?
+    type: text_field
+    name: applicant_posting_pay
+    required: true
+    error_message: This field cannot be left blank.
+- Question:
+    label: What pay would you like to request?
+    type: text_field
+    name: applicant_requesting_pay
+    required: true
+    error_message: This field cannot be left blank.
+- Question:
+    label: What was the Work Schedule in the Posting for this Job?
+    type: text_field
+    name: applicant_posting_sched
+    required: true
+    error_message: This field cannot be left blank.
+- Question:
+    label: What employment class would you prefer?
+    type: select
+    name: applicant_requesting_class
+    collection: [['contractor (performance expected, but with maximum flexibility)','contractor']]
+    required: true
+    display: true
+    blank: false
+    error_message: Please select a valid response from the drop-down menu.
+- Question:
+    label: What sort of Work Schedule do you expect you'll have?
+    type: text_area
+    name: applicant_requesting_schedule
+    placeholder: As in independent contractor, I will work whenever I want, but generally I like 43.6 hour sprints from Monday at 3:37 to ... math is hard.
+    required: true
+    error_message: This field cannot be left blank.
+- Format:
+    label: These questions are about the Rails App you're looking at right now
+    type: text
+    class: underline bold
+- Question:
+    label: What service is Hosting this App?
+    type: select
+    name: applicant_app_host
+    required: true
+    collection: [['Heroku','Heroku'],['AWS','AWS'],['Azure','Azure'],['Google Cloud','Google Cloud']]
+    required: true
+    display: true
+    blank: false
+    error_message: This field cannot be left blank.
+- Question:
+    label: Which Database does this App use?
+    type: select
+    name: applicant_app_db
+    required: true
+    collection: [['MySQL','MySQL'],['SQLite','SQLite'],['PostgreSQL','PostgreSQL'],['MongoDB','MongoDB']]
+    required: true
+    display: true
+    blank: false
+    error_message: This field cannot be left blank.
+- Question:
+    label: Reproduce the snippet in `schema.rb` for this Table in this App.
+    type: text_area
+    name: applicant_rpd_schema
+    placeholder: >
+      ActiveRecord::Schema[7.0].define(version: xxx) do
+        # These are extensions that must be enabled in order to support this database
+        enable_extension "plpgsql"
+        create_table "...
+        ...
+        end
+      end
+    required: true
+    error_message: This field cannot be left blank.
+- Question:
+    label: What service would've hosted this App's Document Storage if I'd gotten that far?
+    type: select
+    name: applicant_doc_store
+    required: true
+    collection: [['AWS','AWS'],['Azure','Azure'],['Google Cloud','Google Cloud']]
+    required: true
+    display: true
+    blank: false
+    error_message: This field cannot be left blank.
+- Format:
+    label: These questions are about your approach to the position.
+    type: text
+    class: underline bold
+- Question:
+    label: >
+      We're building an in house app for our employees to use. I need them to follow procedure, but I don't want to hire more managers to look over their shoulders. 
+      What do I value in this app over the next several months
+    type: select
+    name: applicant_my_values
+    required: true
+    collection: [['cost of infrastructure','cost of infrastructure'],['speed of development','speed of development'],['beauty of UI','beauty of UI']]
+    required: true
+    display: true
+    blank: false
+    error_message: This field cannot be left blank.
+- Question:
+    label: >
+      What is the summary/description for the custom or community Rails GPT you use to help you develop or write code?
+      Or explain why you don't use one.
+    type: text_area
+    name: applicant_gpt_desc
+    placeholder:
+    required: true
+    error_message: This field cannot be left blank.
+- Question:
+    label: Give me feedback. What am I doing wrong?
+    type: text_area
+    name: applicant_what_wrong
+    placeholder:
+    required: true
+    error_message: This field cannot be left blank.
+- Question:
+    label: Do you meet the following criteria?
+    type: checkbox
+    name: applicant_criteria
+    collection: [['Lives in the United States', 'US'],['Able to work from home with a stable internet connection','workspace'], ['Able to work flexible hours, including weekends if needed','flexibility']]
+    required: false
+    error_message:
+- Question:
+    label: I hereby certify that, to the best of my knowledge, the provided information is true, accurate, and presented without any external help or tooling.
+    type: radio_button
+    name: applicant_declaration
+    collection: [['Accept', 'accept'],['Decline','decline']]
+    default: decline
+    required: true
+    error_message: This field cannot be left blank.
