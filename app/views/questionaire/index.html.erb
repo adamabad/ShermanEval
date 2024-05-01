@@ -1,0 +1,60 @@
+<div>
+  <h1 class="font-bold text-4xl">Sherman Evaluation - New Applicant</h1>
+  <div class="question-container">
+    <% if @questions.present? then %>
+      <%= form_with do |form| %>
+        <div class="space-y-12">
+          <div class="border-b border-gray-900/10 pb-12">
+        <% @questions.each do |item| %>
+          <div class="question-block">
+            <% if item['Question'] then %>
+              <% @thisItem = item['Question']%>
+              <%= form.label(@thisItem['name'], @thisItem['label'])%>
+              <% case @thisItem['type'] %>
+                <% when 'text_field' %>
+                  <%= form.text_field @thisItem['name'] %>
+                <% when 'email_field' %>
+                  <%= form.email_field @thisItem['name'] %>
+                <% when 'select' %>
+                  <%= form.select @thisItem['name'], 
+                    @thisItem['collection'], 
+                    prompt: @thisItem['display'], 
+                    include_blank: @thisItem['blank'], 
+                    required: @thisItem['required'], 
+                    class:"form-control" %>
+                <% when 'text_area' %>
+                  <%= form.text_area @thisItem['name'], 
+                    placeholder: @thisItem['placeholder'] %>
+                <% when 'radio_button' %>
+                  <% @thisItem['collection'].each do |radio_item| %>
+                    <%= form.radio_button @thisItem['name'], radio_item[1] %>
+                    <%= form.label radio_item[0] %>
+                  <% end %>
+                <% when 'checkbox' %>
+                  <% @thisItem['collection'].each do |checkbox_item| %>
+                    <%= form.check_box checkbox_item[1] %>
+                    <%= form.label checkbox_item[0] %>
+                  <% end %>
+                <% else %>
+                  The question file contains <%= @thisItem['type'] %>, which is not yet implemented for the questionaire view.
+              <% end %>
+            <% else %>
+              <% if item['Format'] then %>
+                <% @thisItem = item['Format'] %>
+                <% case @thisItem['type'] %>
+                  <% when 'text' %>
+                    <%= form.label @thisItem['label'], class: @thisItem['class'] %>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+        <%= form.submit "Apply", class: "btn btn-primary" %>
+        </div>
+        </div>
+      <% end %>
+    <% else %>
+      Error retrieving question file. Please try again later.
+    <% end %>
+  </div>
+</div>
